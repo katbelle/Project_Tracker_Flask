@@ -1,14 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Unicorn Project Tracker</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block title %} Student Search {% endblock %}
+
+{% block content %}
 	<form action="/student">
 		<label>Enter the GitHub username:
 			<input type="text" name="github">
 		</label>
 		<input type="submit" name="Display Student">
 	</form>
-</body>
-</html>
+{% endblock %}

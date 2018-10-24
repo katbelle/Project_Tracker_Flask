@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>{{first}} added</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block title %} {{first}} added {% endblock %}
+
+{% block content %}
+
 	<div>{{first}} {{last}} has been added to the student database.</div>
 	<div><a href="http://127.0.0.1:5000/student?github={{github}}">Student Profile Here</a>
-</body>
-</html>
+
+{% endblock%}

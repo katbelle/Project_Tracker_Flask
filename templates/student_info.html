@@ -1,12 +1,15 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Student Info Balloons</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
+{% block title %} Student Info Balloons {% endblock %}
+
+{% block content %}
 	<h1>{{ first }} {{ last }} </h1>
 
 	<p>Github Account: {{ github }} </p>
-</body>
-</html>
+
+	<ul>
+		{% for grade in grade_tuples %}
+		<li> {{ grade[0]}} :{{ grade[1] }} </li>
+		{% endfor %}
+	</ul>
+{% endblock %}
