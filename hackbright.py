@@ -19,6 +19,21 @@ def connect_to_db(app):
     db.app = app
     db.init_app(app)
 
+def get_all_students():
+
+	QUERY = """
+		SELECT first_name, last_name, github
+        FROM students
+        """
+
+	db_cursor = db.session.execute(QUERY)
+
+	rows = db_cursor.fetchall()
+
+	#for row in rows:
+	#	print(f"Student: {row[0]} {row[1]}\nGitHub account: {row[2]}")
+
+	return rows
 
 def get_student_by_github(github):
     """Given a GitHub account name, print info about the matching student."""
@@ -168,6 +183,9 @@ def handle_input():
         if command == "student":
             github = args[0]
             get_student_by_github(github)
+
+        elif command == 'all_students':
+        	get_all_students()
 
         elif command == "new_student":
             first_name, last_name, github = args  # unpack!

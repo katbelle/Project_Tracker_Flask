@@ -9,7 +9,13 @@ app = Flask(__name__)
 """
 Need to use python 3.6 or later.
 """
+@app.route("/")
+def index():
+	"""List all students and projects"""
 
+	students = hackbright.get_all_students()
+
+	return render_template('index.html', students=students)
 
 @app.route("/student", methods =["GET"])
 def get_student():
