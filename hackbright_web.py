@@ -13,21 +13,21 @@ Need to use python 3.6 or later.
 
 @app.route("/student", methods =["GET"])
 def get_student():
-    """Show information about a student."""
+	"""Show information about a student."""
 
-    github = request.args.get('github')
+	github = request.args.get('github')
 
-    first, last, github = hackbright.get_student_by_github(github)
+	first, last, github = hackbright.get_student_by_github(github)
 
-    grade_tuples = hackbright.get_grades_by_github(github)
+	grade_tuples = hackbright.get_grades_by_github(github)
 
-    html = render_template('student_info.html',
-    						first=first,
-    						last=last,
-    						github=github,
-    						grade_tuples=grade_tuples)
-    
-    return html
+	html = render_template('student_info.html',
+							first=first,
+							last=last,
+							github=github,
+							grade_tuples=grade_tuples)
+	
+	return html
 
 @app.route("/student_search")
 def get_student_form():
@@ -55,6 +55,16 @@ def add_student():
 
 	return render_template("student_added.html", first=first, last=last, github=github)
 
+@app.route("/project", methods=["GET"])
+def show_projects():
+	""" Display list of all projects"""
+	title = request.args.get('title')
+	title, description, max_grade = hackbright.get_project_by_title(title)
+
+	grade_tuples = hackbright.get_grades_by_title(title)
+
+	return render_template("project.html", title=title, description=description, max_grade=max_grade, grade_tuples=grade_tuples)
+
 if __name__ == "__main__":
-    hackbright.connect_to_db(app)
-    app.run(debug=True)
+	hackbright.connect_to_db(app)
+	app.run(debug=True)

@@ -9,7 +9,7 @@
 
 	<ul>
 		{% for grade in grade_tuples %}
-		<li> {{ grade[0]}} :{{ grade[1] }} </li>
+		<li> <a href = "/project?title={{ grade[0]}}">{{ grade[0] }}</a> :{{ grade[1] }} </li>
 		{% endfor %}
 	</ul>
 {% endblock %}
